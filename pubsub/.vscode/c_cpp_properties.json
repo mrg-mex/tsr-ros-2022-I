@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/rosuser/rosdev/robot_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/rosuser/rosdev/robot_ws/src/DynamixelSDK/ros/dynamixel_sdk/include/**",
+        "/home/rosuser/rosdev/simulation_ws/src/turtlebot3_simulations/turtlebot3_fake/include/**",
+        "/home/rosuser/rosdev/simulation_ws/src/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+        "/home/rosuser/rosdev/robot_ws/src/turtlebot3/turtlebot3_slam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
