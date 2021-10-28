@@ -25,7 +25,7 @@ class MovementDetector(object):
         self.distance_moved_sub = rospy.Subscriber('/odom', Odometry, self.odom_callback)
 
     def get_init_position(self):
-        # Obtiene la posición inicial del robot.
+        # Obtiene la posicion inicial del robot.
         #
         # Estructura del mensaje Odometry que describe la posicion 
         # geometry_msgs/Pose pose
@@ -39,7 +39,6 @@ class MovementDetector(object):
         #     float64 z
         #     float64 w
         # float64[36] covariance
-
         # Variable para obtener el valor inicial de la odometria
         data_odom = None
         # Obtencion del valor inicial en un bloque de que valida la existencia del topico
@@ -48,22 +47,31 @@ class MovementDetector(object):
             try:
                 # rospy.wait_for_message, es una funcion que crea un
                 # nuevo subscriptor al topico, recibe un mensaje y se desubscribe.  
-                data_odom = rospy.wait_for_message('/odom', timeout=1)
-            except:
-                rospy.loginfo("El topico odom no se encuentra activo, esperando.")
-        # Asignación de los valores iniciales obtenidos del topico de odometria
+                data_odom = rospy.wait_for_message('/odom', Odometry, timeout=1)
+            except Exception as e:
+                # Muy usada para depurar print(str(e))
+                rospy.logerr(e)
+                # rospy.loginfo("El topico odom no se encuentra activo, esperando.")
+        # Asignacion de los valores iniciales obtenidos del topico de odometria
         self._current_position.x = data_odom.pose.pose.position.x
         self._current_position.y = data_odom.pose.pose.position.y
         self._current_position.z = data_odom.pose.pose.position.z
+        # print('current_position {}'.format(str(self._current_position)))
 
     def odom_callback(self, msg):
-        # Obtiene la información de la posición del mensaje de odommetria
+        # Obtiene la informacion de la posicion del mensaje de odommetria
         new_position = msg.pose.pose.position
         # Calcula el incremento de la distancia recorrida y se almacena el la variable _mved_distance
         self._moved_distance.data += self.calculate_distance(new_position, self._current_position)
         # Actualiza la posicion actual del robot al nuevo punto de referencia 
         # para los calculos siguientes
         self.update_current_position(new_position)
+        if self._moved_distance.data < 0.000001:
+            aux = Float64()
+            aux.data = 0.0
+            self.distance_moved_pub.publish(aux)
+        else:
+            self.distance_moved_pub.publish(self._moved_distance)
 
     def update_current_position(self, new_position):
         # funcion para asignar la nueva posicion a la posicion actual
@@ -82,6 +90,14 @@ class MovementDetector(object):
         dist = math.hypot(x2-x1, y2-y1)
         return dist
 
+    def publish_moved_distance(self):
+        # spin() simplemente evita que Python salga hasta que el nodo se detenga
+        rospy.spin()    
+
 
 if __name__ == '__main__':
-    pass
+    # crear un nodo para correr el proceso
+    rospy.init_node('movement_detector_node')
+    # Crear la instancia de la clase MovementDetector y poner el programa a funcionar
+    mov_det = MovementDetector()
+    mov_det.publish_moved_distance()
