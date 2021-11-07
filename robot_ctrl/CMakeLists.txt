@@ -102,6 +102,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 # Delete after
+# This one too
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robot_ctrl
