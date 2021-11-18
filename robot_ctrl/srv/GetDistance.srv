@@ -1,0 +1,5 @@
+# Request - Peticion al servidor del servicio
+string nombre
+---
+# Response - Respuesta del servidor a la peticion
+float64 distancia

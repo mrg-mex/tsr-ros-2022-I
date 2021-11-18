@@ -1,0 +1,4 @@
+# Request - Peticion al servidor del servicio
+---
+# Response - Respuesta del servidor a la peticion
+string name
