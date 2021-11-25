@@ -1,0 +1,4 @@
+/robot_ctrl/pid/kp : 0.3
+/robot_ctrl/pid/kd : 0.4
+/robot_ctrl/pid/ki : 0.7
+/robot_ctrl/controller/name : 'PID-Controller'
