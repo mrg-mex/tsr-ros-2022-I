@@ -1,0 +1,8 @@
+# Definicion del mensaje: Goal
+bool charge_state
+---
+# Definicion del mensaje: result
+string battery_status
+---
+# Definicion del mensaje: feedback
+float32 battery_percentage
