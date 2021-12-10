@@ -1,0 +1,18 @@
+# Goal Definition
+geometry_msgs/PointStamped target
+---
+# Result Definition
+int32   state_code
+string  state_name
+float64 distance_error
+float64 yaw_error
+bool    success
+string  goal_message
+---
+# Feedback definition
+int32   i_state_code
+string  i_state_name
+float64 i_distance_error
+float64 i_yaw_error
+
+
