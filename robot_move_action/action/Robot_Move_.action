@@ -1,0 +1,18 @@
+# Robot Move - Goal definition
+geometry_msgs/PointStamped target
+---
+# Robot Move - Result definition
+geometry_msgs/PointStamped i_position
+int32   i_state_code
+string  i_state_name
+float64 i_distance_error
+float64 i_yaw_error
+bool    success
+string  goal_message
+---
+# Robot Move - Feedback definition
+geometry_msgs/PointStamped i_position
+int32   i_state_code
+string  i_state_name
+float64 i_distance_error
+float64 i_yaw_error
