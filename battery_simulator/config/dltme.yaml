@@ -1,0 +1,10 @@
+camera: {active: true, exposure: 1.32, fps: 30, name: nikon}
+rosdistro: 'melodic
+
+  '
+roslaunch:
+  uris: {host_rosvm__45301: 'http://rosvm:45301/'}
+rosversion: '1.14.12
+
+  '
+run_id: a701d00c-48bc-11ec-b8c5-08002784249d

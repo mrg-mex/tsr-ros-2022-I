@@ -1,0 +1,4 @@
+/camera/name : 'nikon' # string type
+/camera/fps : 30 # integer type
+/camera/exposure : 1.32 # float
+/camera/active : true # boolean
